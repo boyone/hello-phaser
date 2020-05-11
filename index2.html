@@ -28,13 +28,35 @@
       var scoreText;
 
       function preload() {
-        this.load.image('sky', 'assets/sky.png');
-        this.load.image('ground', 'assets/platform.png');
-        this.load.image('star', 'assets/star.png');
-        this.load.image('bomb', 'assets/bomb.png');
-        this.load.spritesheet('dude', 'assets/dude.png', {
-          frameWidth: 32,
-          frameHeight: 48,
+        this.load.image(
+          'sky',
+          'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/sky.png'
+        );
+        this.load.image(
+          'ground',
+          'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/platform.png'
+        );
+        this.load.image(
+          'star',
+          'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/star.png'
+        );
+        this.load.image(
+          'bomb',
+          'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/bomb.png'
+        );
+        this.load.spritesheet(
+          'dude',
+          'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/dude.png',
+          {
+            frameWidth: 32,
+            frameHeight: 48,
+          }
+        );
+        this.load.spritesheet('kuma', 'https://raw.githubusercontent.com/boyone/hello-phaser/master/assets/kuma-ani.png', {
+          frameWidth: 123, // 124
+          frameHeight: 162, // 164
+          margin: 1,
+          spacing: 1,
         });
       }
 
@@ -49,26 +71,51 @@
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
 
-        player = this.physics.add.sprite(100, 450, 'dude');
+        // player = this.physics.add.sprite(100, 450, 'dude');
+        // player.setBounce(0.2);
+        // //player.setScale(2);
+        // player.setCollideWorldBounds(true);
+
+        player = this.physics.add.sprite(100, 400, 'kuma');
         player.setBounce(0.2);
+        player.setScale(0.5);
         player.setCollideWorldBounds(true);
 
+        // this.anims.create({
+        //   key: 'left',
+        //   frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        //   frameRate: 10,
+        //   repeat: -1,
+        // });
+
+        // this.anims.create({
+        //   key: 'turn',
+        //   frames: [{ key: 'dude', frame: 4 }],
+        //   frameRate: 20,
+        // });
+
+        // this.anims.create({
+        //   key: 'right',
+        //   frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        //   frameRate: 10,
+        //   repeat: -1,
+        // });
         this.anims.create({
           key: 'left',
-          frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+          frames: this.anims.generateFrameNumbers('kuma', { start: 0, end: 3 }),
           frameRate: 10,
           repeat: -1,
         });
 
         this.anims.create({
           key: 'turn',
-          frames: [{ key: 'dude', frame: 4 }],
+          frames: [{ key: 'kuma', frame: 4 }],
           frameRate: 20,
         });
 
         this.anims.create({
           key: 'right',
-          frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+          frames: this.anims.generateFrameNumbers('kuma', { start: 5, end: 8 }),
           frameRate: 10,
           repeat: -1,
         });
